@@ -1,5 +1,5 @@
 import {computed, inject, Injectable, signal, WritableSignal} from '@angular/core';
-import {HttpClient, HttpParams, HttpStatusCode} from "@angular/common/http";
+import { HttpClient, HttpParams, HttpStatusCode } from "@angular/common/http";
 import {Location} from "@angular/common";
 import {Observable} from "rxjs";
 import {State} from "../model/state.model";

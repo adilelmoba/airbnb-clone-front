@@ -22,7 +22,8 @@
         class="p-button flex align-items-center"
         id="create-listing"
         (click)="onFinish()"
-        [disabled]="isAllStepsValid() || loading()"
+        [disabled]="! isAllStepsValid() || loading()"
+        [class.p-disabled]="!isAllStepsValid() || loading()"
       >
         <div class="btn-create">{{ labelFinishedBtn() }}</div>
         @if(loading()) {

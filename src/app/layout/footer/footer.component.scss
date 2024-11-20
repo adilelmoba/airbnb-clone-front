@@ -1,6 +1,9 @@
 @import "./../../../assets/scss/airbnb-variables.scss";
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   background-color: $footerBgColor;
 }
 

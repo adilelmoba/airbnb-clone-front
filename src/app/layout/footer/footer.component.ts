@@ -12,4 +12,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class FooterComponent {
 
+  currentYear = new Date().getFullYear();
+
 }

@@ -3,6 +3,7 @@
 @import "assets/scss/lara-light/blue/theme";
 @import "primeng/resources/primeng";
 @import "primeflex/primeflex";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 /* Order */
 @layer reset, primeng;
@@ -63,9 +64,11 @@
 }
 
 :root {
-  font-family: $fontFamily !important;
+  // font-family: $fontFamily !important;
+  // --font-family: $fontFamily !important;
+  font-family: "Manrope", sans-serif !important;
+  --font-family: "Manrope", sans-serif !important;
   font-variation-settings: normal !important;
-  --font-family: $fontFamily !important;
 }
 
 .text-dark {
