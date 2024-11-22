@@ -12,6 +12,9 @@ import { AuthService } from '../../core/auth/auth.service';
 import { User } from '../../core/model/user.model';
 import { environment } from '../../../environments/environment';
 import { PropertiesCreateComponent } from '../../landlord/properties-create/properties-create.component';
+import { SearchComponent } from '../../tenant/search/search.component';
+import { ActivatedRoute } from '@angular/router';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-navbar',
@@ -37,6 +40,7 @@ export class NavbarComponent implements OnInit {
   toastService: ToastService = inject(ToastService);
   authService: AuthService = inject(AuthService);
   dialogService: DialogService = inject(DialogService);
+  activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   ref: DynamicDialogRef | undefined;
 
   logIn = () => this.authService.login();
@@ -57,6 +61,7 @@ export class NavbarComponent implements OnInit {
   
   ngOnInit(): void {
     this.authService.fetch(false);
+    this.extractInformationFromSearch();
   }
 
   private fetchMenu(): MenuItem[] {
@@ -109,6 +114,33 @@ export class NavbarComponent implements OnInit {
       modal: true,
       showHeader: true,
     });
+  }
+
+  openNewSearch() {
+    this.ref = this.dialogService.open(SearchComponent, {
+      width: "40%",
+      header: "Search",
+      closable: true,
+      focusOnShow: true,
+      modal: true,
+      showHeader: true,
+    });
+  }
+
+  private extractInformationFromSearch() {
+    this.activatedRoute.queryParams.subscribe({
+      next: (params) => {
+        if(params["location"]) {
+          this.location = params["location"];
+          this.guests = params["guests"] + " guests";
+          this.dates = dayjs(params["startDate"]).format("MMM-DD") + " to " + dayjs(params["endDate"]).format("MMM-DD");
+        } else if(this.location !== "Anywhere") {
+          this.location = "Anywhere";
+          this.guests = "Add guests";
+          this.dates = "Any week";
+        }
+      }
+    })
   }
 }
 
